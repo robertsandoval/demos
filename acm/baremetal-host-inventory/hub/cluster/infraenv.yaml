@@ -1,0 +1,19 @@
+apiVersion: agent-install.openshift.io/v1beta1
+kind: InfraEnv
+metadata:
+  name: REPLACE_CLUSTER_NAME
+  namespace: REPLACE_CLUSTER_NAME
+  labels:
+    agentclusterinstalls.extensions.hive.openshift.io/location: REPLACE_CLUSTER_NAME
+  annotations:
+    apps.open-cluster-management.io/do-not-delete: "true"
+spec:
+  agentLabels:
+    cluster-name: REPLACE_CLUSTER_NAME
+  clusterRef:
+    name: REPLACE_CLUSTER_NAME
+    namespace: REPLACE_CLUSTER_NAME
+  cpuArchitecture: x86_64
+  pullSecretRef:
+    name: pull-secret
+  sshAuthorizedKey: REPLACE_SSH_PUBLIC_KEY

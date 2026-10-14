@@ -1,0 +1,25 @@
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: REPLACE_CLUSTER_NAME
+  namespace: REPLACE_CLUSTER_NAME
+  annotations:
+    agent-install.openshift.io/install-config-overrides: '{"networking":{"networkType":"OVNKubernetes"}}'
+spec:
+  clusterDeploymentRef:
+    name: REPLACE_CLUSTER_NAME
+  imageSetRef:
+    # Prefer an existing ClusterImageSet on the hub for your OCP release (4.22.x).
+    name: REPLACE_CLUSTER_IMAGE_SET
+  networking:
+    networkType: OVNKubernetes
+    clusterNetwork:
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
+    serviceNetwork:
+      - 172.30.0.0/16
+    machineNetwork:
+      - cidr: REPLACE_MACHINE_NETWORK_CIDR
+  provisionRequirements:
+    controlPlaneAgents: 1
+  sshPublicKey: REPLACE_SSH_PUBLIC_KEY

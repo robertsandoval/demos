@@ -1,0 +1,14 @@
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  name: REPLACE_CLUSTER_NAME
+  labels:
+    name: REPLACE_CLUSTER_NAME
+    cloud: BareMetal
+    vendor: OpenShift
+    # Used by the GitOps Application / future ApplicationSets
+    demos.openshift.io/cluster-config: "baremetal-host-inventory"
+  annotations:
+    apps.open-cluster-management.io/do-not-delete: "true"
+spec:
+  hubAcceptsClient: true

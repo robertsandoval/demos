@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: REPLACE_CLUSTER_NAME-cluster-config
+  namespace: openshift-gitops
+  labels:
+    demos.openshift.io/category: acm
+    demos.openshift.io/demo: baremetal-host-inventory
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: demos-acm
+  source:
+    repoURL: https://github.com/robertsandoval/demos.git
+    targetRevision: main
+    path: acm/baremetal-host-inventory/cluster-config
+  destination:
+    # Must match the managed cluster name registered in OpenShift GitOps
+    name: REPLACE_CLUSTER_NAME
+    namespace: openshift-operators
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - SkipDryRunOnMissingResource=true
+  ignoreDifferences:
+    - group: operators.coreos.com
+      kind: Subscription
+      jsonPointers:
+        - /spec/startingCSV

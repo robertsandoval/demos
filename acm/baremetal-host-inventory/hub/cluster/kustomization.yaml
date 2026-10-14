@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Apply after creating pull-secret and bmc-credentials in the cluster namespace.
+# Replace all REPLACE_* tokens (see examples/site.env.example and the demo README).
+resources:
+  - namespace.yaml
+  - agentclusterinstall.yaml
+  - clusterdeployment.yaml
+  - infraenv.yaml
+  - baremetalhost.yaml
+  - managedcluster.yaml
+  - klusterletaddonconfig.yaml

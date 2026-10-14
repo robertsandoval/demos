@@ -1,0 +1,25 @@
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: REPLACE_CLUSTER_NAME
+  namespace: REPLACE_CLUSTER_NAME
+  annotations:
+    apps.open-cluster-management.io/do-not-delete: "true"
+spec:
+  baseDomain: REPLACE_BASE_DOMAIN
+  clusterName: REPLACE_CLUSTER_NAME
+  controlPlaneConfig:
+    servingCertificates: {}
+  installed: false
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: REPLACE_CLUSTER_NAME
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          cluster-name: REPLACE_CLUSTER_NAME
+  pullSecretRef:
+    name: pull-secret

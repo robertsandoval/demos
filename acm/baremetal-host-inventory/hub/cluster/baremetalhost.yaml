@@ -1,0 +1,24 @@
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: REPLACE_HOST_NAME
+  namespace: REPLACE_CLUSTER_NAME
+  labels:
+    infraenvs.agent-install.openshift.io: REPLACE_CLUSTER_NAME
+    cluster-name: REPLACE_CLUSTER_NAME
+  annotations:
+    # Hostname presented to Assisted Installer / Host Inventory
+    bmac.agent-install.openshift.io/hostname: REPLACE_HOST_NAME
+    # kubevirt-redfish and many lab BMCs do not need/ want inspection
+    inspect.metal3.io: disabled
+    apps.open-cluster-management.io/do-not-delete: "true"
+spec:
+  online: true
+  automatedCleaningMode: disabled
+  bootMACAddress: REPLACE_BOOT_MAC_ADDRESS
+  bmc:
+    # Example for kubevirt-redfish or physical Redfish virtual media:
+    # redfish-virtualmedia+https://192.168.1.50:8000/redfish/v1/Systems/vm1
+    address: REPLACE_BMC_ADDRESS
+    credentialsName: bmc-credentials
+    disableCertificateVerification: true

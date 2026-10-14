@@ -1,0 +1,9 @@
+# Applied after the NMState operator CSV is ready. Argo CD may retry until the CRD exists.
+apiVersion: nmstate.io/v1
+kind: NMState
+metadata:
+  name: nmstate
+  namespace: openshift-nmstate
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec: {}

@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Extension point: add another operator directory and list it below.
+# Example:
+#   - lvm-storage/
+#   - metallb/
+resources:
+  - nmstate/namespace.yaml
+  - nmstate/operatorgroup.yaml
+  - nmstate/subscription.yaml
+  - nmstate/nmstate.yaml
+  - openshift-virtualization/namespace.yaml
+  - openshift-virtualization/operatorgroup.yaml
+  - openshift-virtualization/subscription.yaml
+  - openshift-virtualization/hyperconverged.yaml
+
+commonAnnotations:
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

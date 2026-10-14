@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: demos-acm
+  namespace: openshift-gitops
+spec:
+  description: ACM demo applications from robertsandoval/demos
+  sourceRepos:
+    - https://github.com/robertsandoval/demos.git
+  destinations:
+    # Hub (optional local debug)
+    - namespace: "*"
+      server: https://kubernetes.default.svc
+    # Managed clusters registered in OpenShift GitOps (match by name)
+    - namespace: "*"
+      name: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
